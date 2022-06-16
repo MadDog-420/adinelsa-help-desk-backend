@@ -1,9 +1,25 @@
 # Node & MSSQL Server API
-nodejs and Microsoft SQL Server Datbase REST API
+nodejs and Microsoft SQL Server Database REST API
 
-## environment variables
+## Project installation
 
-DB_USER = youruser
-DB_PASSWORD = yourpassword
-DB_SERVER = localhost
-DB_DATABASE = yourdatabase
+Before doing something, make sure you have Node.js installed.\
+Then, run:
+
+### `npm install`
+
+to install the project.
+
+## Setup environment variables
+
+Create `.env` file at the route of the folder
+
+Copy `.env_example` file content and set the corresponding values
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm run dev`
+
+Runs the app in the development mode
