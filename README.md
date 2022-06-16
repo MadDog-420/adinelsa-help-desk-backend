@@ -12,7 +12,7 @@ to install the project.
 
 ## Setup environment variables
 
-Create `.env` file at the route of the folder
+Create `.env` file in the root folder of the project
 
 Copy `.env_example` file content and set the corresponding values
 
