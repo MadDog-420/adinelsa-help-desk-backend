@@ -12,4 +12,6 @@ export const querys = {
   getAllRoles: "SELECT * FROM Rol",
   getUserByLogin: "SELECT * FROM Usuarios WHERE correo_electronico=@email AND password=@password",
   getIncidencias: "SELECT * FROM Incidencia",
+  getEstadoIncidencia: "SELECT * FROM EstadoIncidencia",
+  getTipoIncidencia: "SELECT * FROM TipoIncidencia",
 };

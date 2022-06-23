@@ -3,6 +3,7 @@ import cors from "cors";
 import rolesRoutes from "./routes/roles.routes";
 import userRoutes from "./routes/user.routes";
 import incidenciasRoutes from "./routes/incidencias.routes";
+import estadoRoutes from "./routes/estadoIn.router";
 import morgan from "morgan";
 
 import config from "./config";
@@ -22,5 +23,6 @@ app.use(express.json());
 app.use("/api", rolesRoutes);
 app.use("/api", userRoutes);
 app.use("/api", incidenciasRoutes);
+app.use("/api", estadoRoutes);
 
 export default app;
