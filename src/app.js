@@ -4,6 +4,7 @@ import rolesRoutes from "./routes/roles.routes";
 import userRoutes from "./routes/user.routes";
 import incidenciasRoutes from "./routes/incidencias.routes";
 import estadoRoutes from "./routes/estadoIn.router";
+import tipoRoutes from "./routes/tipo.router";
 import morgan from "morgan";
 
 import config from "./config";
@@ -24,5 +25,6 @@ app.use("/api", rolesRoutes);
 app.use("/api", userRoutes);
 app.use("/api", incidenciasRoutes);
 app.use("/api", estadoRoutes);
+app.use("/api", tipoRoutes);
 
 export default app;
