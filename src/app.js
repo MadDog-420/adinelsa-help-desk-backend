@@ -19,6 +19,7 @@ import config from "./config";
 
 
 
+
 const app = express();
 
 // settings
@@ -44,5 +45,6 @@ app.use("/api",clasificacion);
 app.use("/api",impacto);
 app.use("/api",prioridad);
 app.use("/api",SLA);
+
 
 export default app;

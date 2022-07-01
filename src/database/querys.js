@@ -22,5 +22,6 @@ export const querys = {
   getImpacto: "SELECT * FROM Impacto",
   getPrioridad:"SELECT * FROM Prioridad",
   getSLA:"SELECT * FROM SLA",
+  addNewUser: "INSERT INTO Usuario (nombre,ape_paterno,ape_materno,telefono,fecha_registro,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdRol) VALUES (@nombre,@ape_paterno,@ape_materno,@telefono,@fecha_registro,@correo_electronico,@contrasenia,@num_documento,@IdEstadoUsuario,@IdRol)",
   
 };

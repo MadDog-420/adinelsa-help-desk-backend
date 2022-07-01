@@ -1,0 +1,25 @@
+@api = http://localhost:8000/api/usuario
+
+{{api}}
+
+### add usuario
+POST http://localhost:8000/api/usuario
+Content-Type: application/json
+
+{
+    "nombre": "Marco Antonio",
+    "ape_paterno":"Cornejo",
+    "ape_materno":"Farfan",
+    "telefono":"956267819",
+    "fecha_registro":"2022-07-01",
+    "correo_electronico":"macf2@gmail.com",
+    "contrasenia":"1234SDFE",
+    "num_documento":"73962897",
+    "IdEstadoUsuario":1,
+    "IdRol":3
+  
+}
+
+### get product
+{{api}}/10
+
