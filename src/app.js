@@ -2,12 +2,22 @@ import express from "express";
 import cors from "cors";
 import rolesRoutes from "./routes/roles.routes";
 import userRoutes from "./routes/user.routes";
-import incidenciasRoutes from "./routes/incidencias.routes";
-import estadoRoutes from "./routes/estadoIn.router";
-import tipoRoutes from "./routes/tipo.router";
+import departamentos from './routes/departamentos.routes';
+import estadoSolicitud from './routes/estadosolicitud.routes';
+import estadoUsuario from './routes/estado_usuario.routes';
+import documento from './routes/documento.routes';
+import distrito from './routes/distrito.routes';
+import provincia from './routes/provincia.routes';
+import tipoSolicitud from './routes/tipo_solicitud.routes';
+import clasificacion from './routes/clasificacion.routes';
+import impacto from './routes/impacto.routes';
+import prioridad from './routes/prioridad.routes';
+import SLA from './routes/sla.routes';
 import morgan from "morgan";
 
 import config from "./config";
+
+
 
 const app = express();
 
@@ -23,8 +33,16 @@ app.use(express.json());
 // Routes
 app.use("/api", rolesRoutes);
 app.use("/api", userRoutes);
-app.use("/api", incidenciasRoutes);
-app.use("/api", estadoRoutes);
-app.use("/api", tipoRoutes);
+app.use("/api",departamentos);
+app.use("/api",estadoSolicitud);
+app.use("/api",estadoUsuario);
+app.use("/api",documento);
+app.use("/api",distrito);
+app.use("/api",provincia);
+app.use("/api",tipoSolicitud);
+app.use("/api",clasificacion);
+app.use("/api",impacto);
+app.use("/api",prioridad);
+app.use("/api",SLA);
 
 export default app;

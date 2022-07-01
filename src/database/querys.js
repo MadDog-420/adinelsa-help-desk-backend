@@ -11,7 +11,16 @@ export const querys = {
   */
   getAllRoles: "SELECT * FROM Rol",
   getUserByLogin: "SELECT * FROM Usuarios WHERE correo_electronico=@email AND password=@password",
-  getIncidencias: "SELECT * FROM Incidencia",
-  getEstadoIncidencia: "SELECT * FROM EstadoIncidencia",
-  getTipoIncidencia: "SELECT * FROM TipoIncidencia",
+  getDepartamento: "SELECT * FROM Departamento",
+  getEstadoSolicitud: "SELECT * FROM Estado",
+  getEstadoUsuario:"SELECT * FROM EstadoUsuario ",
+  getDocumento: "SELECT * FROM Documento",
+  getDistrito:"SELECT * FROM Distrito",
+  getProvincia:"SELECT * FROM Provincia",
+  getTipoSolicitud:"SELECT * FROM Tipo",
+  getClasificacion:"SELECT * FROM Clasificacion",
+  getImpacto: "SELECT * FROM Impacto",
+  getPrioridad:"SELECT * FROM Prioridad",
+  getSLA:"SELECT * FROM SLA",
+  
 };
