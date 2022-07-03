@@ -17,6 +17,21 @@ export const getUserByLogin = async (req, res) => {
   }
 };
 
+export const getUserById = async (req, res) => {
+
+  try {
+    const pool = await getConnection();
+    const result = await pool
+      .request()
+      .input("id", req.params.id)
+      .query(querys.getUserById);
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
 export const addNewUser = async (req, res) => {
   const { nombre,ape_paterno,ape_materno,telefono,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdRol } = req.body;
   let fecha_registro=new Date();
