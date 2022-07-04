@@ -10,7 +10,7 @@ export const querys = {
     "UPDATE [webstore].[dbo].[Products] SET Name = @name, Description = @description, Quantity = @quantity WHERE Id = @id",
   */
   getAllRoles: "SELECT * FROM Rol",
-  getUserByLogin: "SELECT IdUsuario FROM Usuario WHERE correo_electronico=@email AND contrasenia=@password",
+  getUserByEmail: "SELECT * FROM Usuario WHERE correo_electronico=@email",
   getUserById: "SELECT * FROM Usuario WHERE IdUsuario=@id",
   getDepartamento: "SELECT * FROM Departamento",
   getEstadoSolicitud: "SELECT * FROM Estado",

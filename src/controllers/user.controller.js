@@ -1,20 +1,40 @@
+const bcrypt = require('bcryptjs');
 import { getConnection, querys, sql } from "../database";
 
 export const getUserByLogin = async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    res.status(400).json({ msg: `Missing ${!email ? "email" : 'password'}!` })
+  }
 
   try {
     const pool = await getConnection();
     const result = await pool
       .request()
       .input("email", sql.VarChar, email)
-      .input("password", sql.VarChar, password)
-      .query(querys.getUserByLogin);
-    res.json(result.recordset);
+      .query(querys.getUserByEmail);
+
+    const hashedContrasenia = await bcrypt.hash(password, 10);
+    const user = result.recordset[0];
+
+    if(user) {
+      
+      const validPass = await bcrypt.compare(password, user.contrasenia);
+      
+      if(validPass) {
+        res.json({ id: user.IdUsuario });
+      } else {
+        res.status(400);
+        res.json({ msg: 'Contraseña incorrecta' });
+      }
+    }
+
   } catch (error) {
     res.status(500);
     res.send(error.message);
   }
+
 };
 
 export const getUserById = async (req, res) => {
@@ -40,6 +60,7 @@ export const addNewUser = async (req, res) => {
     return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
   }
 
+  const hashedContrasenia = await bcrypt.hash(contrasenia, 10);
 
   try {
     const pool = await getConnection();
@@ -52,7 +73,7 @@ export const addNewUser = async (req, res) => {
       .input("telefono", sql.Text, telefono)
       .input("fecha_registro", sql.Date, fecha_registro)
       .input("correo_electronico", sql.VarChar, correo_electronico)
-      .input("contrasenia", sql.VarChar, contrasenia)
+      .input("contrasenia", sql.VarChar, hashedContrasenia)
       .input("num_documento", sql.VarChar, num_documento)
       .input("IdEstadoUsuario", sql.Int, IdEstadoUsuario)
       .input("IdRol", sql.Int, IdRol)
