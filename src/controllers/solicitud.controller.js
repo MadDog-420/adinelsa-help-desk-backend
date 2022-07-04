@@ -12,14 +12,14 @@ export const getSolicitud = async (req, res) => {
 };
 
 export const addNewSolicitud = async (req, res) => {
-  const { Solicitud,DetalleSolicitud,IdUsuario } = req.body;
-  const fecha=Date.now();
-  const FechaRegistro=new Date(fecha);
+  const { Solicitud, DetalleSolicitud, IdUsuario, Imagen = null } = req.body;
+  const fecha = Date.now();
+  const FechaRegistro = new Date(fecha);
+
   // validating
   if (Solicitud == null || DetalleSolicitud==null  || IdUsuario==null) {
     return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
   }
-
 
   try {
     const pool = await getConnection();
@@ -30,15 +30,17 @@ export const addNewSolicitud = async (req, res) => {
       .input("DetalleSolicitud", sql.VarChar, DetalleSolicitud)
       .input("FechaRegistro", sql.Date, FechaRegistro.toUTCString())
       .input("IdUsuario",  sql.Int, IdUsuario)
+      .input("Imagen",  sql.Text, Imagen)
       .query(querys.addNewSolicitud);
-      
 
-    res.json({ Solicitud,DetalleSolicitud,FechaRegistro,IdUsuario });
+    res.status(200);
+    res.json({ Solicitud, DetalleSolicitud, FechaRegistro, IdUsuario });
   } catch (error) {
     res.status(500);
     res.send(error.message);
   }
 };
+
 export const getSolicitudById = async (req, res) => {
   const{id}=req.params;
   const pool = await getConnection();
@@ -48,9 +50,10 @@ export const getSolicitudById = async (req, res) => {
   .query(querys.getSolicitudById);
   res.send(result.recordset[0]);
 };
+
 export const updateSolicitudById = async (req, res) => {
-  const { Solicitud,DetalleSolicitud,IdUsuario} = req.body;
-  const {id}=req.params;
+  const { Solicitud, DetalleSolicitud, IdUsuario } = req.body;
+  const {id} = req.params;
   // validating
   if (Solicitud == null || DetalleSolicitud==null || IdUsuario==null) {
     return res.status(400).json({ msg: "Bad Request. Please fill all fields" });

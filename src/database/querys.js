@@ -29,5 +29,6 @@ export const querys = {
   getSolicitudById:"SELECT * FROM Solicitud Where IdSolicitud=@Id",
   getSolicitud:"SELECT * FROM Solicitud",
   updateSolicitudById:"UPDATE [dbo].[Solicitud] SET Solicitud = @Solicitud, DetalleSolicitud = @DetalleSolicitud,IdUsuario=@IdUsuario WHERE IdSolicitud=@IdSolicitud",
+  updateDetalleSolicitud: "UPDATE DetalleSolicitud SET FechaActualizacion=@FechaActualizacion, IdTipoSolicitud=@IdTipoSolicitud, IdEstadoSolicitud=@IdEstadoSolicitud, IdImpacto=@IdImpacto, IdPrioridad=@IdPrioridad WHERE IdSolicitud=@IdSolicitud" 
   
 };
