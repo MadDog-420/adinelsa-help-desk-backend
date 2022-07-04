@@ -14,6 +14,7 @@ import impacto from './routes/impacto.routes';
 import prioridad from './routes/prioridad.routes';
 import SLA from './routes/sla.routes';
 import solicitud from './routes/solicitud.routes';
+import detallesolicitud from './routes/detalleSolicitud.routes'
 import morgan from "morgan";
 
 import config from "./config";
@@ -46,6 +47,7 @@ app.use("/api",impacto);
 app.use("/api",prioridad);
 app.use("/api",SLA);
 app.use("/api",solicitud);
+app.use("/api",detallesolicitud);
 
 sendCustomEmail();
 
