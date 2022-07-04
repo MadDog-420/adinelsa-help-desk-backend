@@ -7,19 +7,19 @@ POST http://localhost:8000/api/usuario
 Content-Type: application/json
 
 {
-    "nombre": "Marco Antonio",
+    "nombre": "Pablo Fernando",
     "ape_paterno":"Cornejo",
-    "ape_materno":"Farfan",
-    "telefono":"956267819",
-    "fecha_registro":"2022-07-01",
-    "correo_electronico":"macf2@gmail.com",
-    "contrasenia":"1234SDFE",
+    "ape_materno":"Hidalgo",
+    "telefono":"933267819",
+    "correo_electronico":"pabloFer@gmail.com",
+    "contrasenia":"1678DRTW",
     "num_documento":"73962897",
     "IdEstadoUsuario":1,
+    "IdDocumento":1,
     "IdRol":3
   
 }
 
-### get product
-{{api}}/10
+### get usuario
+{{api}}/2
 

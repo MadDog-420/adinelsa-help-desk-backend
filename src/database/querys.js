@@ -23,6 +23,11 @@ export const querys = {
   getImpacto: "SELECT * FROM Impacto",
   getPrioridad:"SELECT * FROM Prioridad",
   getSLA:"SELECT * FROM SLA",
-  addNewUser: "INSERT INTO Usuario (nombre,ape_paterno,ape_materno,telefono,fecha_registro,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdRol) VALUES (@nombre,@ape_paterno,@ape_materno,@telefono,@fecha_registro,@correo_electronico,@contrasenia,@num_documento,@IdEstadoUsuario,@IdRol)",
+  getUsuarios:"SELECT * FROM Usuario",
+  addNewUser: "INSERT INTO Usuario (nombre,ape_paterno,ape_materno,telefono,fecha_registro,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdDocumento,IdRol) VALUES (@nombre,@ape_paterno,@ape_materno,@telefono,@fecha_registro,@correo_electronico,@contrasenia,@num_documento,@IdEstadoUsuario,@IdDocumento,@IdRol)",
+  addNewSolicitud: "INSERT INTO Solicitud (Solicitud,DetalleSolicitud,FechaRegistro,IdUsuario) VALUES (@Solicitud,@DetalleSolicitud,@FechaRegistro,@IdUsuario)",
+  getSolicitudById:"SELECT * FROM Solicitud Where IdSolicitud=@Id",
+  getSolicitud:"SELECT * FROM Solicitud",
+  updateSolicitudById:"UPDATE [dbo].[Solicitud] SET Solicitud = @Solicitud, DetalleSolicitud = @DetalleSolicitud,IdUsuario=@IdUsuario WHERE IdSolicitud=@IdSolicitud",
   
 };

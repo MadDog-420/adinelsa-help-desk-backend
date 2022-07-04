@@ -53,10 +53,12 @@ export const getUserById = async (req, res) => {
 };
 
 export const addNewUser = async (req, res) => {
-  const { nombre,ape_paterno,ape_materno,telefono,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdRol } = req.body;
-  let fecha_registro=new Date();
+  const { nombre,ape_paterno,ape_materno,telefono,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdDocumento,IdRol } = req.body;
+  const fecha=Date.now();
+  const fecha_registro=new Date(fecha);
   // validating
-  if (nombre == null || ape_paterno==null || ape_materno==null || telefono==null || correo_electronico==null || contrasenia==null || num_documento==null || IdEstadoUsuario==null || IdRol==null) {
+  if (nombre == null || ape_paterno==null || ape_materno==null || telefono==null || correo_electronico==null || contrasenia==null || num_documento==null || IdEstadoUsuario==null ||
+    IdDocumento==null || IdRol==null) {
     return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
   }
 
@@ -71,16 +73,27 @@ export const addNewUser = async (req, res) => {
       .input("ape_paterno", sql.VarChar, ape_paterno)
       .input("ape_materno", sql.VarChar, ape_materno)
       .input("telefono", sql.Text, telefono)
-      .input("fecha_registro", sql.Date, fecha_registro)
+      .input("fecha_registro", sql.Date, fecha_registro.toUTCString())
       .input("correo_electronico", sql.VarChar, correo_electronico)
       .input("contrasenia", sql.VarChar, hashedContrasenia)
       .input("num_documento", sql.VarChar, num_documento)
       .input("IdEstadoUsuario", sql.Int, IdEstadoUsuario)
+      .input("IdDocumento",sql.Int,IdDocumento)
       .input("IdRol", sql.Int, IdRol)
       .query(querys.addNewUser);
       
 
-    res.json({ nombre,ape_paterno,ape_materno,telefono,fecha_registro,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdRol });
+    res.json({ nombre,ape_paterno,ape_materno,telefono,fecha_registro,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdDocumento,IdRol });
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+export const getUsuarios = async (req, res) => {
+  try {
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getUsuarios);
+    res.json(result.recordset);
   } catch (error) {
     res.status(500);
     res.send(error.message);
