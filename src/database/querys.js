@@ -31,5 +31,6 @@ export const querys = {
   updateSolicitudById:"UPDATE [dbo].[Solicitud] SET Solicitud = @Solicitud, DetalleSolicitud = @DetalleSolicitud,IdUsuario=@IdUsuario WHERE IdSolicitud=@IdSolicitud",
   updateDetalleSolicitud: "UPDATE DetalleSolicitud SET FechaActualizacion=@FechaActualizacion, IdTipoSolicitud=@IdTipoSolicitud, IdEstadoSolicitud=@IdEstadoSolicitud, IdImpacto=@IdImpacto, IdPrioridad=@IdPrioridad WHERE IdSolicitud=@IdSolicitud",
   getDetalleSolicitudAdmin: "SELECT S.Codigo,S.DetalleSolicitud,S.FechaRegistro,S.IdUsuario,U.nombre,T.Tipo,E.Estado FROM DetalleSolicitud AS DS inner join Solicitud as S on DS.IdSolicitud=S.IdSolicitud INNER JOIN Usuario as U ON S.IdUsuario=U.IdUsuario INNER JOIN Tipo AS T ON DS.IdTipoSolicitud=T.IdTipoSolicitud INNER JOIN Estado as E ON DS.IdEstadoSolicitud=E.IdEstadoSolicitud",
-  getDetalleSolicitudByCode: "SELECT * FROM Solicitud AS S inner join DetalleSolicitud AS DS ON S.Codigo = DS.IdSolicitud WHERE S.Codigo=@codigo",
+  getDetalleSolicitudByCode: "SELECT * FROM Solicitud AS S inner join DetalleSolicitud AS DS ON S.IdSolicitud = DS.IdSolicitud WHERE S.Codigo=@codigo",
+  addDetalleSolicitud: "INSERT INTO DetalleSolicitud (IdSolicitud, IdTipoSolicitud, IdClasificacion, IdImpacto, IdPrioridad, IdUsuario, IdSLA, FechaActualizacion, DetalleSolucion, FechaSolucion) VALUES (@id, @categoria, @clasificacion, @impacto, @prioridad, @responsable, @sla, @fechaActualizacion, @detalleSolucion, @fechaSolucion)",
 };
