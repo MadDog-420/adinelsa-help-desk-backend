@@ -26,10 +26,10 @@ export const querys = {
   getUsuarios:"SELECT * FROM Usuario",
   addNewUser: "INSERT INTO Usuario (nombre,ape_paterno,ape_materno,telefono,fecha_registro,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdDocumento,IdRol) VALUES (@nombre,@ape_paterno,@ape_materno,@telefono,@fecha_registro,@correo_electronico,@contrasenia,@num_documento,@IdEstadoUsuario,@IdDocumento,@IdRol)",
   addNewSolicitud: "INSERT INTO Solicitud (Solicitud,DetalleSolicitud,FechaRegistro,IdUsuario) VALUES (@Solicitud,@DetalleSolicitud,@FechaRegistro,@IdUsuario)",
-  getSolicitudById:"SELECT * FROM Solicitud Where IdSolicitud=@Id",
+  getSolicitudById:"SELECT * FROM Solicitud Where Codigo=@Id",
   getSolicitud:"SELECT * FROM Solicitud",
   updateSolicitudById:"UPDATE [dbo].[Solicitud] SET Solicitud = @Solicitud, DetalleSolicitud = @DetalleSolicitud,IdUsuario=@IdUsuario WHERE IdSolicitud=@IdSolicitud",
   updateDetalleSolicitud: "UPDATE DetalleSolicitud SET FechaActualizacion=@FechaActualizacion, IdTipoSolicitud=@IdTipoSolicitud, IdEstadoSolicitud=@IdEstadoSolicitud, IdImpacto=@IdImpacto, IdPrioridad=@IdPrioridad WHERE IdSolicitud=@IdSolicitud",
   getDetalleSolicitudAdmin: "SELECT S.Codigo,S.DetalleSolicitud,S.FechaRegistro,S.IdUsuario,U.nombre,T.Tipo,E.Estado FROM DetalleSolicitud AS DS inner join Solicitud as S on DS.IdSolicitud=S.IdSolicitud INNER JOIN Usuario as U ON S.IdUsuario=U.IdUsuario INNER JOIN Tipo AS T ON DS.IdTipoSolicitud=T.IdTipoSolicitud INNER JOIN Estado as E ON DS.IdEstadoSolicitud=E.IdEstadoSolicitud",
- 
+  getDetalleSolicitudByCode: "SELECT * FROM Solicitud AS S inner join DetalleSolicitud AS DS ON S.Codigo = DS.IdSolicitud WHERE S.Codigo=@codigo",
 };
