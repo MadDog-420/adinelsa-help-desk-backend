@@ -19,8 +19,6 @@ import morgan from "morgan";
 
 import config from "./config";
 
-import { sendCustomEmail } from "./utils/nodeMailer";
-
 const app = express();
 
 // settings
@@ -48,7 +46,5 @@ app.use("/api",prioridad);
 app.use("/api",SLA);
 app.use("/api",solicitud);
 app.use("/api",detallesolicitud);
-
-sendCustomEmail();
 
 export default app;
