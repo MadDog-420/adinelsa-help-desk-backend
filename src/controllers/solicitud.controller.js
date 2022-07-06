@@ -34,7 +34,7 @@ export const addNewSolicitud = async (req, res) => {
       .query(querys.addNewSolicitud);
 
     res.status(200);
-    res.json({ Solicitud, DetalleSolicitud, FechaRegistro, IdUsuario });
+    res.json({ ok: true });
   } catch (error) {
     res.status(500);
     res.send(error.message);
