@@ -19,13 +19,7 @@ const generateTransporter = () => {
 
 export const sendCustomEmail = async (mailOptions) => {
   let transporter = generateTransporter();
-  let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: "brunostreet12@gmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
-  });
+  let info = await transporter.sendMail(mailOptions);
 
   console.log("Message sent: %s", info.messageId);
   // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));

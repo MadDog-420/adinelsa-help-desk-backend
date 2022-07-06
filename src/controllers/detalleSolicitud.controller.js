@@ -1,4 +1,5 @@
 import { getConnection, querys, sql } from "../database";
+import { sendCustomEmail } from './../utils/nodeMailer';
 
 export const getDetalleSolicitudAdmin = async (req, res) => {
   try {
@@ -59,7 +60,7 @@ export const addDetalleSolicitud = async (req, res) => {
 
 export const updateDetalleSolicitud = async (req, res) => {
   const { id } = req.params;
-  const { categoria, estado, clasificacion, impacto, prioridad, responsable, sla, actividadesSolucion = null } = req.body;
+  const { codigoSolicitud, ownerId, categoria, estado, clasificacion, impacto, prioridad, responsable, sla, actividadesSolucion = null } = req.body;
 
   const fecha = Date.now();
   const FechaActualizacion = new Date(fecha);
@@ -88,8 +89,34 @@ export const updateDetalleSolicitud = async (req, res) => {
       .input("sla", sql.Int, sla)
       .input("fechaActualizacion", sql.Date, FechaActualizacion.toUTCString())
       .input("detalleSolucion", sql.VarChar, actividadesSolucion)
-      .input("fechaSolucion", sql.VarChar, FechaSolucion && FechaSolucion.toUTCString())
+      .input("fechaSolucion", sql.Date, (FechaSolucion && FechaSolucion.toUTCString()) || null)
       .query(querys.updateDetalleSolicitud);
+
+    if (result.rowsAffected && result.rowsAffected.length > 0) {
+      if (estado === 4 || estado === 7) {
+        let nombreEstado = '';
+        if (estado === 4) {
+          nombreEstado = 'asignada';
+        }
+        if (estado === 7) {
+          nombreEstado = 'resuelta';
+        }
+        const user = await pool
+          .request()
+          .input("id", sql.Int, ownerId)
+          .query(querys.getUserById);
+        
+          const mailOptions = {
+            from: '"Adinelsa Help Desk" <support@adinelsa.com>', // sender address
+            to: user.recordset[0].correo_electronico, // list of receivers
+            subject: `Ticket #${codigoSolicitud} actualizado`, // Subject line
+            text: `<div>Hola, ${user.recordset[0].nombre}.<br />La solicitud que registraste como #${codigoSolicitud} a sido ${nombreEstado}</div><br /><a href='http://localhost:3000/solicitudes'>Ver mis solicitudes</a>`, // plain text body
+            html: `<div>Hola, ${user.recordset[0].nombre}.<br />La solicitud que registraste como #${codigoSolicitud} a sido ${nombreEstado}</div><br /><a href='http://localhost:3000/solicitudes'>Ver mis solicitudes</a>`, // plain text body
+          }
+
+        sendCustomEmail(mailOptions);
+      }
+    }
 
     res.json({ id });
   } catch (error) {

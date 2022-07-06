@@ -53,7 +53,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const addNewUser = async (req, res) => {
-  const { nombre,ape_paterno,ape_materno,telefono,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdDocumento,IdRol } = req.body;
+  const { nombre,ape_paterno,ape_materno,telefono,correo_electronico,contrasenia,num_documento,IdEstadoUsuario = 2,IdDocumento, IdRol = 1 } = req.body;
   const fecha=Date.now();
   const fecha_registro=new Date(fecha);
   // validating
@@ -83,7 +83,7 @@ export const addNewUser = async (req, res) => {
       .query(querys.addNewUser);
       
 
-    res.json({ nombre,ape_paterno,ape_materno,telefono,fecha_registro,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdDocumento,IdRol });
+    res.json({ email: correo_electronico });
   } catch (error) {
     res.status(500);
     res.send(error.message);

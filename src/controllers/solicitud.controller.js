@@ -12,7 +12,7 @@ export const getSolicitud = async (req, res) => {
 };
 
 export const addNewSolicitud = async (req, res) => {
-  const { Solicitud, DetalleSolicitud, IdUsuario, Imagen = null } = req.body;
+  const { Solicitud, DetalleSolicitud, IdUsuario, Imagen } = req.body;
   const fecha = Date.now();
   const FechaRegistro = new Date(fecha);
 
