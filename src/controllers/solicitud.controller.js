@@ -13,8 +13,8 @@ export const getSolicitud = async (req, res) => {
 
 export const addNewSolicitud = async (req, res) => {
   const { Solicitud, DetalleSolicitud, IdUsuario, Imagen } = req.body;
-  const fecha = Date.now();
-  const FechaRegistro = new Date(fecha);
+
+  const FechaRegistro = new Date();
 
   // validating
   if (Solicitud == null || DetalleSolicitud==null  || IdUsuario==null) {
@@ -28,7 +28,7 @@ export const addNewSolicitud = async (req, res) => {
       .request()
       .input("Solicitud", sql.VarChar, Solicitud)
       .input("DetalleSolicitud", sql.VarChar, DetalleSolicitud)
-      .input("FechaRegistro", sql.Date, FechaRegistro.toUTCString())
+      .input("FechaRegistro", sql.DateTime, FechaRegistro)
       .input("IdUsuario",  sql.Int, IdUsuario)
       .input("Imagen",  sql.Text, Imagen)
       .query(querys.addNewSolicitud);

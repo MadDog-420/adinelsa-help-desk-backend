@@ -24,8 +24,8 @@ export const getDetalleSolicitudByCode = async (req, res) => {
 
 export const addDetalleSolicitud = async (req, res) => {
   const { idSolicitud, categoria, estado, clasificacion, impacto, prioridad, responsable, sla, actividadesSolucion = null, fechaSolucion = null } = req.body;
-  const fecha = Date.now();
-  const FechaActualizacion = new Date(fecha);
+
+  const FechaActualizacion = new Date();
 
   // validating
   if (idSolicitud == null, categoria == null || estado==null  || clasificacion==null || impacto == null, prioridad==null, responsable==null, sla==null) {
@@ -45,7 +45,7 @@ export const addDetalleSolicitud = async (req, res) => {
       .input("prioridad", sql.Int, prioridad)
       .input("responsable", sql.Int, responsable)
       .input("sla", sql.Int, sla)
-      .input("fechaActualizacion", sql.Date, FechaActualizacion.toUTCString())
+      .input("fechaActualizacion", sql.DateTime, FechaActualizacion)
       .input("detalleSolucion", sql.VarChar, actividadesSolucion)
       .input("fechaSolucion", sql.VarChar, fechaSolucion)
       .query(querys.addDetalleSolicitud);
@@ -62,8 +62,7 @@ export const updateDetalleSolicitud = async (req, res) => {
   const { id } = req.params;
   const { codigoSolicitud, ownerId, categoria, estado, clasificacion, impacto, prioridad, responsable, sla, actividadesSolucion = null } = req.body;
 
-  const fecha = Date.now();
-  const FechaActualizacion = new Date(fecha);
+  const FechaActualizacion = new Date();
 
   // validating
   if (categoria == null || estado==null  || clasificacion==null || impacto == null, prioridad==null, responsable==null, sla==null) {
@@ -87,9 +86,9 @@ export const updateDetalleSolicitud = async (req, res) => {
       .input("prioridad", sql.Int, prioridad)
       .input("responsable", sql.Int, responsable)
       .input("sla", sql.Int, sla)
-      .input("fechaActualizacion", sql.Date, FechaActualizacion.toUTCString())
+      .input("fechaActualizacion", sql.DateTime, FechaActualizacion)
       .input("detalleSolucion", sql.VarChar, actividadesSolucion)
-      .input("fechaSolucion", sql.Date, (FechaSolucion && FechaSolucion.toUTCString()) || null)
+      .input("fechaSolucion", sql.DateTime, (FechaSolucion || null))
       .query(querys.updateDetalleSolicitud);
 
     if (result.rowsAffected && result.rowsAffected.length > 0) {
