@@ -25,7 +25,7 @@ export const querys = {
   getSLA:"SELECT * FROM SLA",
   getUsuarios:"SELECT * FROM Usuario",
   addNewUser: "INSERT INTO Usuario (nombre,ape_paterno,ape_materno,telefono,fecha_registro,correo_electronico,contrasenia,num_documento,IdEstadoUsuario,IdDocumento,IdRol) VALUES (@nombre,@ape_paterno,@ape_materno,@telefono,@fecha_registro,@correo_electronico,@contrasenia,@num_documento,@IdEstadoUsuario,@IdDocumento,@IdRol)",
-  addNewSolicitud: "INSERT INTO Solicitud (Solicitud,DetalleSolicitud,FechaRegistro,IdUsuario,Imagen) VALUES (@Solicitud,@DetalleSolicitud,@FechaRegistro,@IdUsuario,@Imagen)",
+  addNewSolicitud: "INSERT INTO Solicitud (Solicitud,DetalleSolicitud,FechaRegistro,IdUsuario,Imagen,SolicitudAsociada) VALUES (@Solicitud,@DetalleSolicitud,@FechaRegistro,@IdUsuario,@Imagen,@SolicitudAsociada)",
   getSolicitudById:"SELECT * FROM Solicitud Where Codigo=@Id",
   getSolicitud:"SELECT * FROM Solicitud",
   updateSolicitudById:"UPDATE [dbo].[Solicitud] SET Solicitud = @Solicitud, DetalleSolicitud = @DetalleSolicitud,IdUsuario=@IdUsuario WHERE IdSolicitud=@IdSolicitud",

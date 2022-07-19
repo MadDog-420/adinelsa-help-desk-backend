@@ -8,12 +8,13 @@ Content-Type: application/json
 
 {
     "Solicitud":"No quiere abrir mi archivo de Excel",
-    "DetalleSolicitud":"Desde las 14:00 horas de hoy no he podido abir mi archivo de Excel",
-    "IdUsuario":2
+    "DetalleSolicitud":"Desde las 18:00 horas de hoy no he podido abir mi archivo de Excel, esto me ha ocurrido anteriormente.Necesito una pronta solucion, por favor",
+    "IdUsuario":2,
+    "SolicitudAsociada":"S004"
 }
 
 ### get product
-{{api}}/4
+{{api}}/20
 
 ### update product
 PUT {{api}}/4
